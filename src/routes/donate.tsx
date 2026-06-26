@@ -88,4 +88,3 @@ function DonatePage() {
     </>
   );
 }
-*** End Patch

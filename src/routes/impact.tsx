@@ -78,4 +78,3 @@ function ImpactPage() {
     </>
   );
 }
-*** End Patch

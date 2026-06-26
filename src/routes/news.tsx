@@ -77,4 +77,3 @@ function NewsPage() {
     </>
   );
 }
-*** End Patch
