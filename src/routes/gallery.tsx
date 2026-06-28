@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { X } from "lucide-react";
-import { IMG } from "@/lib/images";
+import {
+  CATEGORIES,
+  galleryImages,
+  getCategoryLabel,
+  type GalleryCategoryId,
+} from "@/data/gallery-images";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -15,28 +20,23 @@ export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
-const CATEGORIES = [
-  { id: "wmhd", label: "World Menstrual Hygiene Day 2026", images: [IMG.wmhd1, IMG.wmhd2, IMG.wmhd3, IMG.wmhd4, IMG.wmhd5, IMG.wmhd7] },
-  { id: "tertiary", label: "Tertiary Institution Award", images: [IMG.wmhd3, IMG.wmhd7] },
-  { id: "tagip", label: "TAGIP Foot Soldiers", images: [IMG.wmhd5, IMG.wmhd2] },
-  { id: "symposium", label: "Symposium · College of Health Science & Tech, Keffi", images: [IMG.wmhd1, IMG.wmhd4] },
-  { id: "elders", label: "Meet with Stakeholders & Community Elders", images: [IMG.wmhd4, IMG.wmhd3] },
-  { id: "odumu", label: "Medical Outreach — Odumu Apawu Community", images: [IMG.wmhd2, IMG.wmhd5] },
-  { id: "med2025", label: "Medical Health Outreach 2025", images: [IMG.wmhd7, IMG.wmhd1] },
-  { id: "odu2025", label: "Medical Health Outreach — ODU Community 2025", images: [IMG.wmhd3, IMG.wmhd5] },
-  { id: "gth2025", label: "Grassroots Talent Hunt Competition 2025", images: [IMG.wmhd2, IMG.wmhd7] },
-  { id: "edu", label: "Education Sensitization & Career Guidance (Feb 2025)", images: [IMG.wmhd4, IMG.wmhd1] },
-  { id: "agboda", label: "Community Diagnosis — Agboda Community", images: [IMG.wmhd5, IMG.wmhd3] },
-  { id: "afoajiri", label: "Afo/Ajiri Tertiary Students Award Competition 2025", images: [IMG.wmhd7, IMG.wmhd2] },
-];
-
 function GalleryPage() {
-  const [active, setActive] = useState<string>("all");
+  const [active, setActive] = useState<GalleryCategoryId | "all">("all");
   const [lightbox, setLightbox] = useState<string | null>(null);
 
-  const items = active === "all"
-    ? CATEGORIES.flatMap((c) => c.images.map((src) => ({ src, cat: c.label })))
-    : CATEGORIES.find((c) => c.id === active)!.images.map((src) => ({ src, cat: CATEGORIES.find((c) => c.id === active)!.label }));
+  const items = useMemo(() => {
+    const filtered =
+      active === "all"
+        ? galleryImages
+        : galleryImages.filter((img) => img.category === active);
+    return [...filtered]
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      .map((img) => ({
+        src: img.src,
+        alt: img.alt,
+        cat: img.caption ?? getCategoryLabel(img.category),
+      }));
+  }, [active]);
 
   return (
     <>
@@ -51,7 +51,7 @@ function GalleryPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2">
             {[{ id: "all", label: "All" }, ...CATEGORIES].map((c) => (
-              <button key={c.id} onClick={() => setActive(c.id)}
+              <button key={c.id} onClick={() => setActive(c.id as GalleryCategoryId | "all")}
                 className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${active === c.id ? "border-transparent bg-gradient-brand text-white" : "border-border bg-card text-foreground hover:bg-accent"}`}>
                 {c.label}
               </button>
@@ -62,7 +62,7 @@ function GalleryPage() {
             {items.map((it, i) => (
               <button key={i} onClick={() => setLightbox(it.src)}
                 className="mb-4 block w-full break-inside-avoid overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-elevated">
-                <img src={it.src} alt={it.cat} className="h-auto w-full object-cover" loading="lazy" />
+                <img src={it.src} alt={it.alt} className="h-auto w-full object-cover" loading="lazy" />
                 <div className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">{it.cat}</div>
               </button>
             ))}
