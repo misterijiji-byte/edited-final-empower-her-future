@@ -1,4 +1,4 @@
-
+// Gallery image registry — each line is one photo.
 import _wmhd1 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_1.jpg.asset.json";
 import _wmhd2 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_2.jpg.asset.json";
 import _wmhd3 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_3.jpg.asset.json";
