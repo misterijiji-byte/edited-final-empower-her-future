@@ -1,12 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { X } from "lucide-react";
-import {
-  CATEGORIES,
-  galleryImages,
-  getCategoryLabel,
-  type GalleryCategoryId,
-} from "@/data/gallery-images";
+import { CATS, ITEMS, type GalleryCategory } from "@/data/gallery-images";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -21,22 +16,13 @@ export const Route = createFileRoute("/gallery")({
 });
 
 function GalleryPage() {
-  const [active, setActive] = useState<GalleryCategoryId | "all">("all");
+  const [active, setActive] = useState<GalleryCategory>("All");
   const [lightbox, setLightbox] = useState<string | null>(null);
 
-  const items = useMemo(() => {
-    const filtered =
-      active === "all"
-        ? galleryImages
-        : galleryImages.filter((img) => img.category === active);
-    return [...filtered]
-      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-      .map((img) => ({
-        src: img.src,
-        alt: img.alt,
-        cat: img.caption ?? getCategoryLabel(img.category),
-      }));
-  }, [active]);
+  const items = useMemo(
+    () => (active === "All" ? ITEMS : ITEMS.filter((it) => it.cat === active)),
+    [active],
+  );
 
   return (
     <>
@@ -50,10 +36,10 @@ function GalleryPage() {
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2">
-            {[{ id: "all", label: "All" }, ...CATEGORIES].map((c) => (
-              <button key={c.id} onClick={() => setActive(c.id as GalleryCategoryId | "all")}
-                className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${active === c.id ? "border-transparent bg-gradient-brand text-white" : "border-border bg-card text-foreground hover:bg-accent"}`}>
-                {c.label}
+            {CATS.map((c) => (
+              <button key={c} onClick={() => setActive(c)}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${active === c ? "border-transparent bg-gradient-brand text-white" : "border-border bg-card text-foreground hover:bg-accent"}`}>
+                {c}
               </button>
             ))}
           </div>
@@ -62,7 +48,7 @@ function GalleryPage() {
             {items.map((it, i) => (
               <button key={i} onClick={() => setLightbox(it.src)}
                 className="mb-4 block w-full break-inside-avoid overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-elevated">
-                <img src={it.src} alt={it.alt} className="h-auto w-full object-cover" loading="lazy" />
+                <img src={it.src} alt={it.alt ?? it.cat} className="h-auto w-full object-cover" loading="lazy" />
                 <div className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">{it.cat}</div>
               </button>
             ))}
