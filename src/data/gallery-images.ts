@@ -10,12 +10,23 @@
  * ===========================================================================*/
 
 // 1. Image imports — one line per image file in src/assets/.
-import wmhd1 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_1.jpg";
-import wmhd2 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_2.jpg";
-import wmhd3 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_3.jpg";
-import wmhd4 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_4.jpg";
-import wmhd5 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_5.jpg";
-import wmhd7 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_7.jpg";
+//    Images are CDN-hosted, so we import the `.asset.json` pointer and pull
+//    the `.url` off it. To add a new image, drop it in src/assets/, run
+//    `lovable-assets create --file <path> > <path>.asset.json`, then add a
+//    line below.
+import _wmhd1 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_1.jpg.asset.json";
+import _wmhd2 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_2.jpg.asset.json";
+import _wmhd3 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_3.jpg.asset.json";
+import _wmhd4 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_4.jpg.asset.json";
+import _wmhd5 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_5.jpg.asset.json";
+import _wmhd7 from "@/assets/WORLD_MENSTRUAL_HYGIENE_DAY_2026_7.jpg.asset.json";
+
+const wmhd1 = _wmhd1.url;
+const wmhd2 = _wmhd2.url;
+const wmhd3 = _wmhd3.url;
+const wmhd4 = _wmhd4.url;
+const wmhd5 = _wmhd5.url;
+const wmhd7 = _wmhd7.url;
 
 // 2. Category tabs shown above the gallery grid.
 export const CATS = [
