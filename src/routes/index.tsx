@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, GraduationCap, HeartPulse, Sparkles, Users, ShieldCheck, Eye, Compass, Quote } from "lucide-react";
 import { IMG } from "@/lib/images";
+import whyFargef from "@/assets/why-fargef.jpg.asset.json";
 import { Counter } from "@/components/counter";
 
 export const Route = createFileRoute("/")({
@@ -91,7 +92,7 @@ function Index() {
             </div>
             <div className="relative">
               <div className="overflow-hidden rounded-[2rem] shadow-elevated">
-                <img src={IMG.wmhd7} alt="FARGEF community outreach group photo" className="h-[560px] w-full object-cover" />
+                <img src={whyFargef.url} alt="FARGEF women and girls in traditional attire" className="h-[560px] w-full object-cover" />
               </div>
               <div className="absolute -bottom-6 -left-6 hidden rounded-3xl bg-gradient-brand p-6 text-white shadow-elevated sm:block w-64">
                 <div className="text-xs uppercase tracking-[0.2em] text-white/80">Trusted by</div>
