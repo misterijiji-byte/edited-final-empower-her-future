@@ -58,9 +58,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 shrink-0 text-white">
           <img src={IMG.logo} alt="FARGEF logo" className="h-10 w-10 rounded-full object-contain shrink-0" />
-          <div className="hidden min-w-0 sm:block">
+          <div className="block min-w-0">
             <div className="text-sm font-extrabold leading-tight tracking-tight">FARGEF</div>
-            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white/80">
+            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white/80 hidden sm:block">
               Every Girl is Phenomenal
             </div>
           </div>
