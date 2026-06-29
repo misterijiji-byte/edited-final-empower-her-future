@@ -56,11 +56,11 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex min-w-0 items-center gap-2.5 shrink-0">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5 shrink-0 text-white">
           <img src={IMG.logo} alt="FARGEF logo" className="h-10 w-10 rounded-full object-contain shrink-0" />
           <div className="hidden min-w-0 sm:block">
             <div className="text-sm font-extrabold leading-tight tracking-tight">FARGEF</div>
-            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white/80">
               Every Girl is Phenomenal
             </div>
           </div>
@@ -72,8 +72,8 @@ export function SiteHeader() {
               key={n.to}
               to={n.to}
               activeOptions={{ exact: n.to === "/" }}
-              className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/80 transition hover:bg-accent hover:text-foreground"
-              activeProps={{ className: "bg-accent text-foreground" }}
+              className="rounded-full px-3.5 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+              activeProps={{ className: "bg-white/15 text-white" }}
             >
               {n.label}
             </Link>
@@ -85,7 +85,7 @@ export function SiteHeader() {
             type="button"
             onClick={toggle}
             aria-label="Toggle dark mode"
-            className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background/60 text-foreground transition hover:bg-accent"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
