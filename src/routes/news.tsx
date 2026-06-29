@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { IMG } from "@/lib/images";
 import { ArrowRight, CalendarDays } from "lucide-react";
+import news1 from "@/assets/news_1.jpg.asset.json";
+import news2 from "@/assets/news_2.jpg.asset.json";
+import news3 from "@/assets/news_3.jpg.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -15,9 +18,9 @@ export const Route = createFileRoute("/news")({
 });
 
 const ARTICLES = [
-  { img: IMG.wmhd7, date: "Nov 2026", tag: "Medical", title: "FARGEF Conducts Major Medical Outreach in Agboda Community", excerpt: "₦1,550,000 in drugs and 512 beneficiaries — including children and pregnant women." },
-  { img: IMG.wmhd3, date: "Oct 2025", tag: "Talent", title: "Six Talented Girls Rewarded at Grassroots Talent Hunt 2025", excerpt: "Winners awarded ₦200,000 each at the grand finale held at New Keffi Hotel." },
-  { img: IMG.wmhd5, date: "Coming Soon", tag: "STEM", title: "FARGEF Expands Its Empowerment Projects to STEM", excerpt: "A new pathway in code, robotics, health-tech and data — for the next generation of female innovators." },
+  { img: news1.url, date: "Nov 2026", tag: "Medical", title: "FARGEF Conducts Major Medical Outreach in Agboda Community", excerpt: "₦1,550,000 in drugs and 512 beneficiaries — including children and pregnant women." },
+  { img: news2.url, date: "Oct 2025", tag: "Talent", title: "Six Talented Girls Rewarded at Grassroots Talent Hunt 2025", excerpt: "Winners awarded ₦200,000 each at the grand finale held at New Keffi Hotel." },
+  { img: news3.url, date: "Coming Soon", tag: "STEM", title: "FARGEF Expands Its Empowerment Projects to STEM", excerpt: "A new pathway in code, robotics, health-tech and data — for the next generation of female innovators." },
 ];
 
 function NewsPage() {
