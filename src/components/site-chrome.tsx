@@ -60,7 +60,7 @@ export function SiteHeader() {
           <img src={IMG.logo} alt="FARGEF logo" className="h-10 w-10 rounded-full object-contain shrink-0" />
           <div className="block min-w-0">
             <div className="text-sm font-extrabold leading-tight tracking-tight">FARGEF</div>
-            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white/80 hidden sm:block">
+            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white">
               Every Girl is Phenomenal
             </div>
           </div>
