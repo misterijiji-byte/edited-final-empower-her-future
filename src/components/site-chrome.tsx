@@ -59,10 +59,7 @@ export function SiteHeader() {
         <Link to="/" className="flex min-w-0 items-center gap-2.5 shrink-0 text-white">
           <img src={IMG.logo} alt="FARGEF logo" className="h-10 w-10 rounded-full object-contain shrink-0" />
           <div className="block min-w-0">
-            <div className="text-[10px] sm:text-sm font-extrabold leading-tight tracking-tight">FATHUR RAHMAN GIRL CHILD EMPOWERMENT FOUNDATION</div>
-            <div className="truncate text-[10px] uppercase tracking-[0.14em] text-white">
-              Every Girl is Phenomenal
-            </div>
+            <div className="text-xs sm:text-sm font-extrabold leading-tight tracking-tight max-w-[200px] sm:max-w-none">FATHUR RAHMAN GIRL CHILD<br />EMPOWERMENT FOUNDATION</div>
           </div>
         </Link>
 
